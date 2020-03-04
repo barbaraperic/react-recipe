@@ -15,7 +15,6 @@ const App = () => {
   const recipeName = e.target.elements.recipeName.value
   const api_call = await fetch(`http://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=${recipeName}&app_id=${API_ID}&app_key=${API_KEY}&from=0&to=3&calories=591-722&health=alcohol-free`)
   const data = await api_call.json()
-  console.log('data', data.hits)
   setRecipes(data.hits)
   }
 
@@ -26,7 +25,6 @@ const App = () => {
       </header>
       <Form getRecipe={getRecipe}/>
       <Recipes recipes={recipes}/>
-     
     </div>
   );
 }
