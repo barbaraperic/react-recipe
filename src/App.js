@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Form from './components/Form'
 import Recipes from './components/Recipes'
@@ -7,8 +7,7 @@ const API_ID = '4e2b9f2f'
 const API_KEY = '3754163bcce3124533b8aa56f5594b48'
 
 const App = () => {
-
-  const [recipes, setRecipes] = useState([ ])
+  const [recipes, setRecipes] = useState([])
 
   const getRecipe = async (e) => {
   e.preventDefault()
@@ -17,6 +16,16 @@ const App = () => {
   const data = await api_call.json()
   setRecipes(data.hits)
   }
+
+  useEffect(() => {
+    const json = window.localStorage.getItem('recipes')
+    setRecipes(JSON.parse(json))
+}, [])
+
+  useEffect(() => {
+      const recipe = JSON.stringify(recipes)
+      window.localStorage.setItem('recipes', recipe)
+  }, [recipes])
 
   return (
     <div className="App">

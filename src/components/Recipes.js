@@ -13,7 +13,7 @@ const Recipes = props => (
                 src={item.recipe.image} 
                 alt={item.recipe.label}/>
                 <div className="recipe__text">
-                    <h5>{item.recipe.label.length < 20 ? `${item.recipe.label}` : `${item.recipe.label.substring(0, 25)}...`}</h5>
+                    <h5>{item.recipe.label.length < 10 ? `${item.recipe.label}` : `${item.recipe.label.substring(0, 25)}...`}</h5>
                     <button className="active-recipe__button">
                         <Link to={{ 
                             pathname: `/recipe/${item.recipe.label}`,
